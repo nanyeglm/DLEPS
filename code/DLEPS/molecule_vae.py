@@ -10,12 +10,12 @@ def xlength(y):
     return reduce(lambda sum, element: sum + 1, y, 0)
 
 def get_zinc_tokenizer(cfg):
-    long_tokens = [a for a in list(cfg._lexical_index.keys()) if xlength(a) > 1] ####
-    replacements = ['$','%','^'] # ,'&']
-    assert xlength(long_tokens) == len(replacements) ####xzw
-    for token in replacements: 
-        assert token not in cfg._lexical_index ####
-    
+    long_tokens = [a for a in list(cfg._lexical_index.keys()) if xlength(a) > 1]
+    replacements = ['$', '%', '^']
+    assert xlength(long_tokens) == len(replacements)
+    for token in replacements:
+        assert token not in cfg._lexical_index
+
     def tokenize(smiles):
         for i, token in enumerate(long_tokens):
             smiles = smiles.replace(token, replacements[i])
@@ -24,11 +24,12 @@ def get_zinc_tokenizer(cfg):
             try:
                 ix = replacements.index(token)
                 tokens.append(long_tokens[ix])
-            except:
+            except ValueError:
                 tokens.append(token)
         return tokens
-    
+
     return tokenize
+
 
 def pop_or_nothing(S):
     try: return S.pop()
@@ -51,22 +52,18 @@ def prods_to_eq(prods):
 
 
 class ZincGrammarModel(object):
-
     def __init__(self, weights_file, latent_rep_size=56):
-        """ Load the (trained) zinc encoder/decoder, grammar model. """
+        # Initialization remains the same
+        # Ensure all functions and methods are compatible
         self._grammar = zinc_grammar
         self._model = models.model_zinc
         self.MAX_LEN = self._model.MAX_LEN
         self._productions = self._grammar.GCFG.productions()
-        self._prod_map = {}
-        for ix, prod in enumerate(self._productions):
-            self._prod_map[prod] = ix
+        self._prod_map = {prod: ix for ix, prod in enumerate(self._productions)}
         self._parser = nltk.ChartParser(self._grammar.GCFG)
         self._tokenize = get_zinc_tokenizer(self._grammar.GCFG)
         self._n_chars = len(self._productions)
-        self._lhs_map = {}
-        for ix, lhs in enumerate(self._grammar.lhs_list):
-            self._lhs_map[lhs] = ix
+        self._lhs_map = {lhs: ix for ix, lhs in enumerate(self._grammar.lhs_list)}
         self.vae = self._model.MoleculeVAE()
         self.vae.load(self._productions, weights_file, max_length=self.MAX_LEN, latent_rep_size=latent_rep_size)
 
