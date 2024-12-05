@@ -47,26 +47,6 @@ DLEPS
 1. 分子编码部分来自[grammarVAE](https://github.com/nanyeglm/grammarVAE)项目,请先根据该项目的指南,进行分子训练和优化,获得基于语法的VAE模型预训练权重文件,grammarVAE项目提供了一个预训练文件:[zinc_vae_grammar_L56_E100_val.hdf5](https://github.com/nanyeglm/grammarVAE/blob/master/pretrained/zinc_vae_grammar_L56_E100_val.hdf5),可直接用于编码和解码SMILES字符串，节省训练时间
 
 2. 从[GSE92742](https://www.ncbi.nlm.nih.gov/geo/query/acc.cgi?acc=GSE92742)中下载第一阶段的L1000原始数据
- | 文件名                                                       | 大小     | 描述                                                         |
-   | ------------------------------------------------------------ | -------- | ------------------------------------------------------------ |
-   | [GSE92742_Broad_LINCS_Level1_LXB_n1403502.tar.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_Level1_LXB_n1403502.tar.gz) | 1.2 TB   | Level 1 数据：原始流式细胞术数据，每个384孔板孔生成一个LXB文件，记录每个分析物的荧光强度值。 |
-   | [GSE92742_Broad_LINCS_Level2_GEX_delta_n49216x978.gctx.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_Level2_GEX_delta_n49216x978.gctx.gz) | 98.9 MB  | Level 2 数据：从Luminex珠子解卷积后的基因表达值，包含49,216个样本和978个基因。 |
-   | [GSE92742_Broad_LINCS_Level2_GEX_epsilon_n1269922x978.gctx.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_Level2_GEX_epsilon_n1269922x978.gctx.gz) | 2.3 GB   | Level 2 数据：从Luminex珠子解卷积后的基因表达值，包含1,269,922个样本和978个基因。 |
-   | [GSE92742_Broad_LINCS_Level3_INF_mlr12k_n1319138x12328.gctx.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_Level3_INF_mlr12k_n1319138x12328.gctx.gz) | 48.8 GB  | Level 3 数据：包含直接测量的标志性转录本和推断基因的表达谱，经过不变集缩放和分位数归一化处理，包含1,319,138个样本和12,328个基因。 |
-   | [GSE92742_Broad_LINCS_Level4_ZSPCINF_mlr12k_n1319138x12328.gctx.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_Level4_ZSPCINF_mlr12k_n1319138x12328.gctx.gz) | 49.6 GB  | Level 4 数据：包含相对于对照的差异表达基因的稳健 z 分数。    |
-   | [GSE92742_Broad_LINCS_Level5_COMPZ.MODZ_n473647x12328.gctx.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_Level5_COMPZ.MODZ_n473647x12328.gctx.gz) | 19.9 GB  | Level 5 数据：每种处理的重复样本的加权平均差异表达向量，包含473,647个签名和12,328个基因。 |
-   | [GSE92742_Broad_LINCS_README.pdf](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_README.pdf) | 25.8 KB  | 数据集的概述和说明文档。                                     |
-   | [GSE92742_Broad_LINCS_auxiliary_datasets.tar.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_auxiliary_datasets.tar.gz) | 1.6 GB   | 辅助数据集，可能包括额外的元数据或支持文件。                 |
-   | [GSE92742_Broad_LINCS_cell_info.txt.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_cell_info.txt.gz) | 2.5 KB   | 提供细胞系的元数据信息，如细胞系名称、特性等。               |
-   | [GSE92742_Broad_LINCS_gene_info.txt.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_gene_info.txt.gz) | 211.6 KB | 提供基因的注释信息，包括基因ID、基因符号和基因描述。         |
-   | [GSE92742_Broad_LINCS_gene_info_delta_landmark.txt.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_gene_info_delta_landmark.txt.gz) | 18.3 KB  | 提供与地标基因相关的注释信息。                               |
-   | [GSE92742_Broad_LINCS_inst_info.txt.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_inst_info.txt.gz) | 11.5 MB  | 包含实验详细信息，如处理条件、时间点和剂量。                 |
-   | [GSE92742_Broad_LINCS_pert_info.txt.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_pert_info.txt.gz) | 1.1 MB   | 提供关于扰动剂（如药物或基因敲除）的信息。                   |
-   | [GSE92742_Broad_LINCS_pert_metrics.txt.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_pert_metrics.txt.gz) | 908.9 KB | 提供扰动剂相关的性能指标信息。                               |
-   | [GSE92742_Broad_LINCS_sig_info.txt.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_sig_info.txt.gz) | 10.6 MB  | 提供基因表达签名（signatures）的元数据信息，包括签名ID、处理条件等。 |
-   | [GSE92742_Broad_LINCS_sig_metrics.txt.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_Broad_LINCS_sig_metrics.txt.gz) | 11.9 MB  | 提供基因表达签名相关的性能指标信息。                         |
-   | [GSE92742_SHA512SUMS.txt.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742_SHA512SUMS.txt.gz) | 1.4 KB   | 文件的 SHA512 校验和，用于验证文件完整性。                   |
-
 重点关注以下文件
 
 - [GSE92742_Broad_LINCS_sig_info.txt.gz](https://ftp.ncbi.nlm.nih.gov/geo/series/GSE92nnn/GSE92742/suppl/GSE92742%5FBroad%5FLINCS%5Fsig%5Finfo.txt.gz)
