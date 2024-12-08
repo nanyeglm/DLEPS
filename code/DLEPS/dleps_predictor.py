@@ -1,15 +1,18 @@
 #code/DLEPS/dleps_predictor.py
+
+from __future__ import print_function, division
+
 import os
 import numpy as np
 import pandas as pd
 import nltk
 import h5py
 import tensorflow as tf
-from tensorflow.keras.layers import Input, Dense, Dropout, Lambda
-from tensorflow.keras.models import Model
-from tensorflow.keras import backend as K
-from tensorflow.keras import optimizers
-from tensorflow.keras.callbacks import ReduceLROnPlateau
+from keras.layers import Input, Dense, Dropout, Lambda
+from keras.models import Model
+from keras import backend as K
+from keras import optimizers
+from keras.callbacks import ReduceLROnPlateau
 
 from utils import get_fp, to1hot
 import molecule_vae
