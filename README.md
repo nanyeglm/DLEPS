@@ -5,6 +5,7 @@ A Deep Learning based Efficacy Prediction System for Drug Discovery
 # 环境配置(复现之前务必阅读)
 
 **请注意**:
+
 **1. DLEPS项目的分子编码部分基于[grammarVAE](https://github.com/mkusner/grammarVAE)项目.**
 
 **2. 整个想最核心的文件是dleps_predictor.py,本部分代码包含了整个模型的训练,预测的核心框架**
