@@ -2,14 +2,24 @@
 
 A Deep Learning based Efficacy Prediction System for Drug Discovery
 
-# 环境配置
+# 环境配置(复现之前务必阅读)
 
-由于grammarVAE项目的分子编码执行在tensorflow1.x的环境中,因此需配置
+**请注意**:
+**1. DLEPS项目的分子编码部分基于[grammarVAE](https://github.com/mkusner/grammarVAE)项目.
+2. 整个想最核心的文件是dleps_predictor.py,本部分代码包含了整个模型的训练,预测的核心框架
+3. [grammarVAE](https://github.com/mkusner/grammarVAE)项目的深度学习环境非常老,基于python2.7和tensorflow0.12开发,非常不建议使用该环境
+4. DLEPS项目的原始开发环境为python3.7,tensorflow1.15,不支持GPU加速
+5. 原项目的keras版本为2.X,截至本项目发布之前,keras版本已更新至3.X,两代版本在API层存在较大差异,请务必注意
+6. 建议按照下面步骤创建虚拟环境,并配置特定版本下的python和tensorflow版本,否则不保证能复现该项目**
 
-```
-pip install tensorflow==1.15.0
-pip install keras==2.3.0
-```
+   ```bash
+   conda create -n DLEPS python==3.7.12
+   conda activate DLEPS
+   conda install numpy pandas nltk h5py requests  rdkit matplotlib
+   pip install tensorflow==1.15
+   pip install keras==2.3.0
+   pip install h5py==2.10
+   ```
 
 # 项目结构及核心文件解读
 
