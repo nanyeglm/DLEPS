@@ -1,11 +1,7 @@
 #code/DLEPS/driv_DLEPS.py
-import pickle
-import numpy as np
-import time
 import argparse
 import os
-from shutil import copyfile
-import sys, os
+import os
 
 from dleps_predictor import DLEPS
 

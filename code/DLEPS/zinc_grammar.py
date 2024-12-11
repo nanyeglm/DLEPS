@@ -3,7 +3,6 @@
 import nltk
 import numpy as np
 import six
-import pdb
 
 # the zinc grammar
 gram = """smiles -> chain

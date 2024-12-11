@@ -24,7 +24,9 @@ A Deep Learning based Efficacy Prediction System for Drug Discovery
    conda install numpy pandas nltk h5py requests  rdkit matplotlib
    pip install tensorflow==1.15
    pip install keras==2.3.0
+   pip install cmapPy
    pip install h5py==2.10
+   pip install protobuf==3.20.*
    ```
 
 # 项目结构及核心文件解读

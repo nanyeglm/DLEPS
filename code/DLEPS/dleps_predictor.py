@@ -5,19 +5,14 @@ from __future__ import print_function, division
 import os
 import numpy as np
 import pandas as pd
-import nltk
 import h5py
-import tensorflow as tf
-from keras.layers import Input, Dense, Dropout, Lambda
+from keras.layers import Dense, Dropout, Lambda
 from keras.models import Model
 from keras import backend as K
-from keras import optimizers
 from keras.callbacks import ReduceLROnPlateau
 
 from utils import get_fp, to1hot
 import molecule_vae
-from molecule_vae import get_zinc_tokenizer
-import zinc_grammar
 from vectorized_cmap import computecs
 
 def sampling(args):

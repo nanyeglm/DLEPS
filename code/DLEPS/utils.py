@@ -3,7 +3,7 @@
 import numpy as np
 from rdkit import Chem, DataStructs
 import nltk
-from molecule_vae import xlength, get_zinc_tokenizer
+from molecule_vae import get_zinc_tokenizer
 import zinc_grammar
 import warnings
 

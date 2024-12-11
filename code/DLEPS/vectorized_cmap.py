@@ -2,9 +2,7 @@
 
 import pandas as pd
 #from cmapPy.pandasGEXpress import parse
-import gc
 import numpy as np
-import os, time, random
 
 
 # This file consists of useful functions that are related to cmap

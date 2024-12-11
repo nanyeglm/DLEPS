@@ -1,5 +1,4 @@
 #code/DLEPS/models/model_zinc.py
-import copy
 from keras import backend as K
 from keras import objectives
 from keras.models import Model
