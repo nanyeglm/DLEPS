@@ -16,7 +16,9 @@ A Deep Learning based Efficacy Prediction System for Drug Discovery
 
 **5. 原项目的keras版本为2.X,截至本项目发布之前,keras版本已更新至3.X,两代版本在API层存在较大差异,请务必注意**
 
-**6. 建议按照下面步骤创建虚拟环境,并配置特定版本下的python和tensorflow版本,否则不保证能复现该项目**
+**6. 建议按照下面步骤创建虚拟环境,并配置特定版本下的python和tensorflow版本**
+
+**7.本项目在ubuntu22.04.05,conda虚拟环境下测试正常运行,其他环境不保证能复现该项目**
 
    ```bash
    conda create -n DLEPS python==3.7.12
@@ -25,7 +27,7 @@ A Deep Learning based Efficacy Prediction System for Drug Discovery
    pip install tensorflow==1.15
    pip install keras==2.3.0
    pip install cmapPy
-   pip install h5py==2.10
+   pip install h5py==2.10  #务必确认h5py为此版本
    pip install protobuf==3.20.*
    ```
 

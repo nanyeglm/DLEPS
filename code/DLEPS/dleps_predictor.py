@@ -49,7 +49,7 @@ class DLEPS(object):
         self.full_con = A3.dot(self.W)
 
         # 加载基因信息
-        self.genes = pd.read_table("/mnt/d/Research/PHD/DLEPS/data/gene_info.txt", header=0)
+        self.genes = pd.read_table("../../data/gene_info.txt", header=0)
         self.gene_dict = dict(zip(self.genes["pr_gene_symbol"], self.genes["pr_gene_id"]))
 
         # 加载上调基因集
@@ -108,7 +108,7 @@ class DLEPS(object):
         返回:
             numpy 数组，形状为 (978, 12328)。
         """
-        hf = h5py.File('/mnt/d/Research/PHD/DLEPS/data/denseweight.h5', 'r')
+        hf = h5py.File('../../data/denseweight.h5', 'r')
         n1 = hf.get('W')
         W = np.array(n1)
         hf.close()
@@ -122,7 +122,7 @@ class DLEPS(object):
             A3 (numpy 数组): 形状为 (979,)。
             con (numpy 数组): 形状为 (978,)。
         """
-        benchmark = pd.read_csv('/mnt/d/Research/PHD/DLEPS/data/benchmark.csv')
+        benchmark = pd.read_csv('../../data//benchmark.csv')
         A3 = np.concatenate((np.array([1]), benchmark['1.0'].values), axis=0)
         con = benchmark['1.0'].values
         return A3, con
