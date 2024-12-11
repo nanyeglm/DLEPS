@@ -1,20 +1,17 @@
-#code/DLEPS/molecule_vae.py
 import nltk
 import numpy as np
 
 import zinc_grammar
 import models.model_zinc
-from functools import reduce
 
-def xlength(y):
-    return reduce(lambda sum, element: sum + 1, y, 0)
+
 
 def get_zinc_tokenizer(cfg):
-    long_tokens = [a for a in list(cfg._lexical_index.keys()) if xlength(a) > 1] ####
+    long_tokens = [a for a in list(cfg._lexical_index.keys()) if len(a) > 1]
     replacements = ['$','%','^'] # ,'&']
-    assert xlength(long_tokens) == len(replacements) ####xzw
+    assert len(long_tokens) == len(replacements)
     for token in replacements: 
-        assert token not in cfg._lexical_index ####
+        assert token not in cfg._lexical_index
     
     def tokenize(smiles):
         for i, token in enumerate(long_tokens):
@@ -71,7 +68,7 @@ class ZincGrammarModel(object):
         self.vae.load(self._productions, weights_file, max_length=self.MAX_LEN, latent_rep_size=latent_rep_size)
 
 
-    def onehot(self, smiles):
+    def encode(self, smiles):
         """ Encode a list of smiles strings into the latent space """
         assert type(smiles) == list
         tokens = list(map(self._tokenize, smiles))
@@ -81,18 +78,9 @@ class ZincGrammarModel(object):
         one_hot = np.zeros((len(indices), self.MAX_LEN, self._n_chars), dtype=np.float32)
         for i in range(len(indices)):
             num_productions = len(indices[i])
-            if num_productions > self.MAX_LEN:
-                print("Too large molecules, out of range")
-            #print("i=  {%d} len(indices)=  {%d} num_productions = %d " % (i,len(indices),num_productions))
-                one_hot[i][np.arange(self.MAX_LEN),indices[i][:self.MAX_LEN]] = 1.
-            else:    
-                one_hot[i][np.arange(num_productions),indices[i]] = 1.
-                one_hot[i][np.arange(num_productions, self.MAX_LEN),-1] = 1.
-#self.one_hot = one_hot
-        return one_hot
-
-    def encode(self, smiles):
-        one_hot = self.onehot(smiles)
+            one_hot[i][np.arange(num_productions),indices[i]] = 1.
+            one_hot[i][np.arange(num_productions, self.MAX_LEN),-1] = 1.
+        self.one_hot = one_hot
         return self.vae.encoderMV.predict(one_hot)[0]
 
     def _sample_using_masks(self, unmasked):
@@ -119,7 +107,7 @@ class ZincGrammarModel(object):
             rhs = [[a for a in self._productions[i].rhs() if (type(a) == nltk.grammar.Nonterminal) and (str(a) != 'None')] 
                    for i in sampled_output]
             for ix in range(S.shape[0]):
-                S[ix].extend(map(str, rhs[ix])[::-1])
+                S[ix].extend(list(map(str, rhs[ix]))[::-1])
         return X_hat # , ln_p
 
     def decode(self, z):
@@ -132,4 +120,3 @@ class ZincGrammarModel(object):
                      for t in range(X_hat.shape[1])] 
                     for index in range(X_hat.shape[0])]
         return [prods_to_eq(prods) for prods in prod_seq]
-
