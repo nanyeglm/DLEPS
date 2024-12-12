@@ -84,7 +84,7 @@ class DLEPS(object):
             Keras 模型实例。
         """
         # 变分自编码器权重路径
-        grammar_weights = '/mnt/d/Research/PHD/DLEPS/data/zinc_vae_grammar_L56_E100_val.hdf5'
+        grammar_weights = '../../data/zinc_vae_grammar_L56_E100_val.hdf5'
         grammar_model = molecule_vae.ZincGrammarModel(grammar_weights)
         self.grammar_model = grammar_model
         z_mn, z_var = grammar_model.vae.encoderMV.output
