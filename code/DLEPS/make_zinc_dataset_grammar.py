@@ -11,6 +11,7 @@ import zinc_grammar
 # 读取SMILES数据
 with open('data/250k_rndm_zinc_drugs_clean.smi', 'r') as f:
     L = [line.strip() for line in f]
+    
 
 MAX_LEN = 277
 NCHARS = len(zinc_grammar.GCFG.productions())
