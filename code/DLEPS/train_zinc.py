@@ -17,8 +17,8 @@ rules = G.gram.split('\n')
 MAX_LEN = 277
 DIM = len(rules)
 LATENT = 56
-EPOCHS = 5
-BATCH = 2000
+EPOCHS = 250
+BATCH = 1000
 
 
 def get_arguments():
@@ -80,12 +80,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
-
-
-
-
-
-
-
-
